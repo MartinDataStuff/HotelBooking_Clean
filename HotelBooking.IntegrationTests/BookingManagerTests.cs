@@ -34,7 +34,8 @@ namespace HotelBooking.IntegrationTests
             // Create repositories and BookingManager
             var bookingRepos = new BookingRepository(dbContext);
             var roomRepos = new RoomRepository(dbContext);
-            bookingManager = new BookingManager(bookingRepos, roomRepos);
+            var dateChecker = new DateChecker();
+            bookingManager = new BookingManager(bookingRepos, roomRepos, dateChecker);
         }
 
         public void Dispose()
@@ -47,7 +48,7 @@ namespace HotelBooking.IntegrationTests
         public void Test1()
         {
             // Act
-            var roomId = bookingManager.FindAvailableRoom(DateTime.Today.AddDays(8), DateTime.Today.AddDays(8));
+            var roomId = bookingManager.FindAvailableRoom(DateTime.Today.AddDays(8), DateTime.Today.AddDays(9));
             // Assert
             Assert.Equal(-1, roomId);
         }

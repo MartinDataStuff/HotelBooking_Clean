@@ -7,14 +7,16 @@ namespace HotelBooking.BusinessLogic
 {
     public class BookingManager : IBookingManager
     {
-        private IRepository<Booking> bookingRepository;
-        private IRepository<Room> roomRepository;
+        private readonly IRepository<Booking> _bookingRepository;
+        private readonly IRepository<Room> _roomRepository;
+        private readonly IDateChecker dateChecker;
 
         // Constructor injection
-        public BookingManager(IRepository<Booking> bookingRepository, IRepository<Room> roomRepository)
+        public BookingManager(IRepository<Booking> bookingRepository, IRepository<Room> roomRepository, IDateChecker dateChecker)
         {
-            this.bookingRepository = bookingRepository;
-            this.roomRepository = roomRepository;
+            this._bookingRepository = bookingRepository;
+            this._roomRepository = roomRepository;
+            this.dateChecker = dateChecker;
         }
 
         public bool CreateBooking(Booking booking)
@@ -25,7 +27,7 @@ namespace HotelBooking.BusinessLogic
             {
                 booking.RoomId = roomId;
                 booking.IsActive = true;
-                bookingRepository.Add(booking);
+                _bookingRepository.Add(booking);
                 return true;
             }
             else
@@ -36,11 +38,21 @@ namespace HotelBooking.BusinessLogic
 
         public int FindAvailableRoom(DateTime startDate, DateTime endDate)
         {
-            if (startDate <= DateTime.Today || startDate > endDate)
-                throw new ArgumentException("The start date cannot be in the past or later than the end date.");
+            //if (startDate <= DateTime.Today || startDate > endDate)
+            //    throw new ArgumentException("The start date cannot be in the past or later than the end date.");
+            try
+            {
+                //Validate date range, throws error if invalid otherwise returns true.
+                dateChecker.DateRangeIsValid(startDate, endDate);
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae); //Should maybe be written as error instead of just normal writeline.
+                throw;
+            }
 
-            var activeBookings = bookingRepository.GetAll().Where(b => b.IsActive);
-            foreach (var room in roomRepository.GetAll())
+            var activeBookings = _bookingRepository.GetAll().Where(b => b.IsActive);
+            foreach (var room in _roomRepository.GetAll())
             {
                 var activeBookingsForCurrentRoom = activeBookings.Where(b => b.RoomId == room.Id);
                 if (activeBookingsForCurrentRoom.All(b => startDate < b.StartDate &&
@@ -54,12 +66,23 @@ namespace HotelBooking.BusinessLogic
 
         public List<DateTime> GetFullyOccupiedDates(DateTime startDate, DateTime endDate)
         {
-            if (startDate > endDate)
-                throw new ArgumentException("The start date cannot be later than the end date.");
+            //    if (startDate > endDate)
+            //        throw new ArgumentException("The start date cannot be later than the end date.");
 
             List<DateTime> fullyOccupiedDates = new List<DateTime>();
-            int noOfRooms = roomRepository.GetAll().Count();
-            var bookings = bookingRepository.GetAll();
+            try
+            {
+                //Validate date range, throws error if invalid otherwise returns true.
+                dateChecker.DateRangeIsValid(startDate, endDate);
+            }
+            catch (ArgumentException ae)
+            {
+                Console.WriteLine(ae); //Should maybe be written as error instead of just normal writeline.
+                throw;
+            }
+
+            int noOfRooms = _roomRepository.GetAll().Count();
+            var bookings = _bookingRepository.GetAll();
 
             if (bookings.Any())
             {
