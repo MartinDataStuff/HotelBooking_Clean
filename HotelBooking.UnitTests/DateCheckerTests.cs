@@ -8,7 +8,9 @@ namespace HotelBooking.UnitTests
 {
     public class DateCheckerTests
     {
-        [Fact]
+        //[Fact]
+        [Theory]
+        [ClassData(typeof(DateChecker_TestDataGenerator))]
         public void DateRangeIsValid_StartdateCanBeInTheFuture_ThrowsArgumentException()
         {
             //Object to test
