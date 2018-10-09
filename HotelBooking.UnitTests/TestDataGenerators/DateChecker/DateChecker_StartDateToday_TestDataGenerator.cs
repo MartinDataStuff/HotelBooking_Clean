@@ -12,10 +12,12 @@ namespace HotelBooking.UnitTests
         {
             new object[] { DateTime.Today, DateTime.Today.AddDays(21) },
             new object[] { DateTime.Today, DateTime.Today.AddDays(14) },
+#region Comprssed
             new object[] { DateTime.Today, DateTime.Today.AddDays(21) },
             new object[] { DateTime.Today, DateTime.Today.AddDays(35) },
             new object[] { DateTime.Today, DateTime.Today.AddDays(37) },
             new object[] { DateTime.Today, DateTime.Today.AddDays(5) },
+#endregion
         };
 
         public IEnumerator<object[]> GetEnumerator()
