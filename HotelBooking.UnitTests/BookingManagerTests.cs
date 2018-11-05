@@ -17,7 +17,7 @@ namespace HotelBooking.UnitTests
 
         public BookingManagerTests()
         {
-
+                        
             //mock repos
             FakeRoomRepo = new Mock<IRepository<Room>>();
             FakeBookingRepo = new Mock<IRepository<Booking>>();
@@ -74,12 +74,9 @@ namespace HotelBooking.UnitTests
             //Arrange
             DateTime date = DateTime.Today.AddDays(1);
 
-
             int Roomid = bm.FindAvailableRoom(date, date.AddDays(1));
 
-
             Assert.NotEqual(-1, Roomid);
-
 
         }
 

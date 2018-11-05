@@ -26,6 +26,7 @@ namespace HotelBooking.UnitTests
         }
 
         //[Fact]
+
         [Theory]
         [ClassData(typeof(DateChecker_StartDateToday_TestDataGenerator))]
         public void DateRangeIsValid_StartdateCanBeToday_ThrowsArgumentException(DateTime startDate, DateTime endDate)
