@@ -9,10 +9,10 @@ using Xunit;
 namespace HotelBooking.UnitTests
 {
     public class BookingManagerTests
-    { 
+    {
         private Mock<IRepository<Room>> FakeRoomRepo;
         private Mock<IRepository<Booking>> FakeBookingRepo;
-        
+
         IBookingManager bm;
 
         public BookingManagerTests()
@@ -153,13 +153,6 @@ namespace HotelBooking.UnitTests
             bm.CreateBooking(booking);
 
             Assert.True(booking.IsActive);
-
-
         }
-
-
-
-
-
     }
 }
