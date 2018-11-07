@@ -122,7 +122,7 @@ namespace HotelBooking.SpecFlow
         {
             try
             {
-                _roomID = bm.FindAvailableRoom(DateTime.Today.AddDays(_startDate), DateTime.Today.AddDays(_startDate));
+                _roomID = bm.FindAvailableRoom(DateTime.Today.AddDays(_startDate), DateTime.Today.AddDays(_endDate));
             }
             catch (Exception e)
             {
