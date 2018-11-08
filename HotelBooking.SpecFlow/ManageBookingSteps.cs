@@ -24,21 +24,21 @@ namespace HotelBooking.SpecFlow
 
         //Managers
         private readonly BookingManager bm;
-        //private readonly Mock<IRepository<Room>> _fakeRoomRepo;
-        //private readonly Mock<IRepository<Booking>> _fakeBookingRepo;
-        private readonly IRepository<Room> _fakeRoomRepo;
-        private readonly IRepository<Booking> _fakeBookingRepo;
+        private readonly Mock<IRepository<Room>> _fakeRoomRepo;
+        private readonly Mock<IRepository<Booking>> _fakeBookingRepo;
+        //private readonly IRepository<Room> _fakeRoomRepo;
+        //private readonly IRepository<Booking> _fakeBookingRepo;
 
         public ManageBookingSteps()
         {
 
             //mock repos
-            _fakeRoomRepo = new FakeRoomRepository();//new Mock<IRepository<Room>>();
-            _fakeBookingRepo = new FakeBookingRepository(DateTime.Today.AddDays(4), DateTime.Today.AddDays(10));//new Mock<IRepository<Booking>>();
+            _fakeRoomRepo = new Mock<IRepository<Room>>();//new FakeRoomRepository();//new Mock<IRepository<Room>>();
+            _fakeBookingRepo = new Mock<IRepository<Booking>>();//new FakeBookingRepository(DateTime.Today.AddDays(4), DateTime.Today.AddDays(10));//new Mock<IRepository<Booking>>();
 
 
             //Booking Manager instance
-            bm = new BookingManager(_fakeBookingRepo, _fakeRoomRepo, new DateChecker());
+            bm = new BookingManager(_fakeBookingRepo.Object, _fakeRoomRepo.Object, new DateChecker());
 
 
             //Setup of Mock Rooms
@@ -60,17 +60,17 @@ namespace HotelBooking.SpecFlow
             };
 
 
-            ////Unit test setup for mock data, with getall rooms
-            //_fakeRoomRepo.Setup(x => x.GetAll()).Returns(rooms);
+            //Unit test setup for mock data, with getall rooms
+            _fakeRoomRepo.Setup(x => x.GetAll()).Returns(rooms);
 
-            ////Unit test setup for mock data, with specific room.
-            //_fakeRoomRepo.Setup(y => y.Get(2)).Returns(rooms[1]);
+            //Unit test setup for mock data, with specific room.
+            _fakeRoomRepo.Setup(y => y.Get(2)).Returns(rooms[1]);
 
-            ////Unit test setup for mock data with getall bookings
-            //_fakeBookingRepo.Setup(x => x.GetAll()).Returns(bookings);
+            //Unit test setup for mock data with getall bookings
+            _fakeBookingRepo.Setup(x => x.GetAll()).Returns(bookings);
 
-            ////Unit test setup for mock data with specific booking
-            //_fakeBookingRepo.Setup(y => y.Get(2)).Returns(bookings[1]);
+            //Unit test setup for mock data with specific booking
+            _fakeBookingRepo.Setup(y => y.Get(2)).Returns(bookings[1]);
 
         }
 
@@ -126,7 +126,8 @@ namespace HotelBooking.SpecFlow
             }
             catch (Exception e)
             {
-                _exception = e;
+                ScenarioContext.Current[("Error")] = e;
+                //_exception = e;
             }
         }
 
@@ -148,8 +149,8 @@ namespace HotelBooking.SpecFlow
         [Then(@"I should get an error")]
         public void ThenIShouldGetAnError()
         {
-            //Record.Exception(() => _exception);
-            Assert.NotNull(_exception);
+            Assert.True(ScenarioContext.Current.ContainsKey("Error"));
+            //Assert.NotNull(_exception);
         }
 
         [Then(@"I should get a room ID")]
