@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using HotelBooking.BusinessLogic;
 using HotelBooking.Models;
-using HotelBooking.UnitTests.Fakes;
 using Moq;
 using TechTalk.SpecFlow;
 using Xunit;
@@ -11,8 +10,7 @@ namespace HotelBooking.SpecFlow
 {
     [Binding]
     public class ManageBookingSteps
-    {
-        //Inputs
+    { //Inputs
         private int _startDate;
         private int _endDate;
 
@@ -21,24 +19,21 @@ namespace HotelBooking.SpecFlow
         private int _roomID;
         private Exception _exception;
         private Booking _booking;
+        private IList<DateTime> _dates;
 
         //Managers
         private readonly BookingManager bm;
-        private readonly Mock<IRepository<Room>> _fakeRoomRepo;
-        private readonly Mock<IRepository<Booking>> _fakeBookingRepo;
-        //private readonly IRepository<Room> _fakeRoomRepo;
-        //private readonly IRepository<Booking> _fakeBookingRepo;
 
         public ManageBookingSteps()
         {
 
             //mock repos
-            _fakeRoomRepo = new Mock<IRepository<Room>>();//new FakeRoomRepository();//new Mock<IRepository<Room>>();
-            _fakeBookingRepo = new Mock<IRepository<Booking>>();//new FakeBookingRepository(DateTime.Today.AddDays(4), DateTime.Today.AddDays(10));//new Mock<IRepository<Booking>>();
+            var fakeRoomRepo = new Mock<IRepository<Room>>();
+            var fakeBookingRepo = new Mock<IRepository<Booking>>();
 
 
             //Booking Manager instance
-            bm = new BookingManager(_fakeBookingRepo.Object, _fakeRoomRepo.Object, new DateChecker());
+            bm = new BookingManager(fakeBookingRepo.Object, fakeRoomRepo.Object, new DateChecker());
 
 
             //Setup of Mock Rooms
@@ -54,61 +49,24 @@ namespace HotelBooking.SpecFlow
             DateTime date = DateTime.Today.AddDays(4);
             List<Booking> bookings = new List<Booking>
             {
-                new Booking { Id = 1, StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=1, RoomId=1 },
-                new Booking { Id = 2, StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=2, RoomId=2 },
-                new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=1, RoomId=3 }
+                new Booking { Id = 1, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=1 },
+                new Booking { Id = 2, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=2, RoomId=2 },
+                new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=3 }
             };
 
 
             //Unit test setup for mock data, with getall rooms
-            _fakeRoomRepo.Setup(x => x.GetAll()).Returns(rooms);
+            fakeRoomRepo.Setup(x => x.GetAll()).Returns(rooms);
 
             //Unit test setup for mock data, with specific room.
-            _fakeRoomRepo.Setup(y => y.Get(2)).Returns(rooms[1]);
+            fakeRoomRepo.Setup(y => y.Get(2)).Returns(rooms[1]);
 
             //Unit test setup for mock data with getall bookings
-            _fakeBookingRepo.Setup(x => x.GetAll()).Returns(bookings);
+            fakeBookingRepo.Setup(x => x.GetAll()).Returns(bookings);
 
             //Unit test setup for mock data with specific booking
-            _fakeBookingRepo.Setup(y => y.Get(2)).Returns(bookings[1]);
+            fakeBookingRepo.Setup(y => y.Get(2)).Returns(bookings[1]);
 
-        }
-
-
-        [Given(@"Startdate for the booking is in (.*) days")]
-        public void GivenStartdateForTheBookingIsInDays(int startdate)
-        {
-            _startDate = startdate;
-        }
-
-        [Given(@"Enddate for the booking is also in (.*) days")]
-        public void GivenEnddateForTheBookingIsAlsoInDays(int endate)
-        {
-            _endDate = endate;
-        }
-
-        [Given(@"Enddate is in (.*) day")]
-        public void GivenEnddateIsInDay(int endate)
-        {
-            _endDate = endate;
-        }
-
-        [Given(@"Endate for the booking is in (.*) days")]
-        public void GivenEndateForTheBookingIsInDays(int endate)
-        {
-            _endDate = endate;
-        }
-
-        [Given(@"(.*) is surplied from today")]
-        public void GivenIsSurpliedFromToday(int startdate)
-        {
-            _startDate = startdate;
-        }
-
-        [Given(@"(.*) is also surplied from today")]
-        public void GivenIsAlsoSurpliedFromToday(int endate)
-        {
-            _endDate = endate;
         }
 
         [Given(@"Startdate for the booking is in (.*) day")]
@@ -116,7 +74,32 @@ namespace HotelBooking.SpecFlow
         {
             _startDate = startdate;
         }
+        
+        [Given(@"Enddate for the booking is in (.*) days")]
+        public void GivenEnddateForTheBookingIsInDays(int enddate)
+        {
+            _endDate = enddate;
+        }
+        
+        [Given(@"Startdate for the booking is in (.*) days")]
+        public void GivenStartdateForTheBookingIsInDays(int startdate)
+        {
+            _startDate = startdate;
+        }
+        
+        [Given(@"(.*) is supplied from today as startdate")]
+        public void GivenIsSuppliedFromTodayAsStartdate(int startdate)
+        {
 
+            _startDate = startdate;
+        }
+        
+        [Given(@"(.*) is also supplied from today as enddate")]
+        public void GivenIsAlsoSuppliedFromTodayAsEnddate(int enddate)
+        {
+            _endDate = enddate;
+        }
+        
         [When(@"I look for a room")]
         public void WhenILookForARoom()
         {
@@ -130,7 +113,7 @@ namespace HotelBooking.SpecFlow
                 //_exception = e;
             }
         }
-
+        
         [When(@"I book a room")]
         public void WhenIBookARoom()
         {
@@ -145,7 +128,13 @@ namespace HotelBooking.SpecFlow
 
             _isCreated = bm.CreateBooking(_booking);
         }
-
+        
+        [When(@"I look for fully booked dates")]
+        public void WhenILookForFullyBookedDates()
+        {
+            _dates=bm.GetFullyOccupiedDates(DateTime.Today.AddDays(_startDate), DateTime.Today.AddDays(_endDate));
+        }
+        
         [Then(@"I should get an error")]
         public void ThenIShouldGetAnError()
         {
@@ -156,25 +145,31 @@ namespace HotelBooking.SpecFlow
         [Then(@"I should get a room ID")]
         public void ThenIShouldGetARoomID()
         {
-            Assert.NotEqual(-1, _roomID);
+            Assert.NotEqual(-1, _roomID); ;
         }
-
+        
         [Then(@"I should get (.*) instead of a legit room ID")]
         public void ThenIShouldGetInsteadOfALegitRoomID(int badNumber)
         {
             Assert.NotEqual(badNumber, _roomID);
         }
-
+        
         [Then(@"return whether the booking is (.*)")]
-        public void ThenReturnWhetherTheBookingIs(bool isValid)
+        public void ThenReturnWhetherTheBookingIsTrue(bool isValid)
         {
             Assert.Equal(isValid, _isCreated);
         }
-
+        
         [Then(@"The booking should be active")]
         public void ThenTheBookingShouldBeActive()
         {
             Assert.True(_booking.IsActive);
+        }
+        
+        [Then(@"a list of fully occupied dates should be given")]
+        public void ThenAListOfFullyOccupiedDatesShouldBeGiven()
+        {
+            Assert.Equal(16,_dates.Count);
         }
     }
 }

@@ -79,8 +79,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fakes\FakeBookingRepository.cs" />
-    <Compile Include="Fakes\FakeRoomRepository.cs" />
     <Compile Include="ManageBookingSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecFlowFeature1.feature.cs">

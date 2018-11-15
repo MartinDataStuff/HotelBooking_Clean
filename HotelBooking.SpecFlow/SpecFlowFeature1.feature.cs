@@ -89,9 +89,9 @@ namespace HotelBooking.SpecFlow
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given("Startdate for the booking is in 0 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Startdate for the booking is in 0 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.And("Enddate for the booking is also in 0 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enddate for the booking is in 0 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.When("I look for a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
@@ -110,9 +110,9 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 14
- testRunner.Given("Startdate for the booking is in 0 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Startdate for the booking is in 0 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.And("Enddate is in 1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enddate for the booking is in 1 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
  testRunner.When("I look for a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
@@ -133,7 +133,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 20
  testRunner.Given("Startdate for the booking is in 2 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 21
- testRunner.And("Endate for the booking is in 5 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enddate for the booking is in 5 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 22
  testRunner.When("I book a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 23
@@ -154,9 +154,9 @@ this.ScenarioInitialize(scenarioInfo);
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 26
- testRunner.Given(string.Format("{0} is surplied from today", startdate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("{0} is supplied from today as startdate", startdate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
- testRunner.And(string.Format("{0} is also surplied from today", endedate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("{0} is also supplied from today as enddate", endedate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
  testRunner.When("I book a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 29
@@ -177,11 +177,32 @@ this.ScenarioInitialize(scenarioInfo);
 #line 37
  testRunner.Given("Startdate for the booking is in 1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 38
- testRunner.And("Endate for the booking is in 3 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enddate for the booking is in 3 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
  testRunner.When("I book a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 40
  testRunner.Then("The booking should be active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Returning fully occupied rooms within a set of 2 dates")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Returning fully occupied rooms within a set of 2 dates")]
+        public virtual void ReturningFullyOccupiedRoomsWithinASetOf2Dates()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Returning fully occupied rooms within a set of 2 dates", null, ((string[])(null)));
+#line 43
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 44
+ testRunner.Given("Startdate for the booking is in 1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 45
+ testRunner.And("Enddate for the booking is in 30 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 47
+ testRunner.Then("a list of fully occupied dates should be given", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
