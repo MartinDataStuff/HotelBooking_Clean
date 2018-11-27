@@ -22,6 +22,12 @@ Scenario: Try to find an available room but get -1 as room id as no rooms availa
 	When I look for a room
 	Then I should get -1 as a room ID
 
+Scenario: Find available room ID without going through more loop steps. Room ID is not -1
+	Given Startdate for the booking is in 0 day
+	And Enddate for the booking is in 3 days
+	When I look for a room
+	Then I should get a room ID
+
 Scenario: Creating a booking with invalid dates
 	Given Startdate for the booking is in 2 days
 	And Enddate for the booking is in 5 days

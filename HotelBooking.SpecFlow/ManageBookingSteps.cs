@@ -112,7 +112,14 @@ namespace HotelBooking.SpecFlow
                 //_exception = e;
             }
         }
-        
+
+        [Then(@"I should a room ID that is not (.*)")]
+        public void ThenIShouldARoomIDThatIsNot(int p0)
+        {
+            ScenarioContext.Current.Pending();
+        }
+
+
         [When(@"I book a room")]
         public void WhenIBookARoom()
         {

@@ -142,22 +142,43 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.FactAttribute(DisplayName="Find available room ID without going through more loop steps. Room ID is not -1")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Find available room ID without going through more loop steps. Room ID is not -1")]
+        public virtual void FindAvailableRoomIDWithoutGoingThroughMoreLoopSteps_RoomIDIsNot_1()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Find available room ID without going through more loop steps. Room ID is not -1", null, ((string[])(null)));
+#line 25
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 26
+ testRunner.Given("Startdate for the booking is in 0 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 27
+ testRunner.And("Enddate for the booking is in 3 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+ testRunner.When("I look for a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 29
+ testRunner.Then("I should get a room ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [Xunit.FactAttribute(DisplayName="Creating a booking with invalid dates")]
         [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
         [Xunit.TraitAttribute("Description", "Creating a booking with invalid dates")]
         public virtual void CreatingABookingWithInvalidDates()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a booking with invalid dates", null, ((string[])(null)));
-#line 25
+#line 31
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 26
+#line 32
  testRunner.Given("Startdate for the booking is in 2 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 27
+#line 33
  testRunner.And("Enddate for the booking is in 5 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 34
  testRunner.When("I book a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 35
  testRunner.Then("I should get -1 instead of a legit room ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -171,16 +192,16 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void CreatingABookingInAnOccupiedOrUnoccupiedTimeframe(string startdate, string endedate, string valid, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a booking in an occupied or unoccupied timeframe", null, exampleTags);
-#line 31
+#line 37
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 32
+#line 38
  testRunner.Given(string.Format("{0} is supplied from today as startdate", startdate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 33
+#line 39
  testRunner.And(string.Format("{0} is also supplied from today as enddate", endedate), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 40
  testRunner.When("I book a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 35
+#line 41
  testRunner.Then(string.Format("return whether the booking is {0}", valid), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -192,16 +213,16 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void CreatingABookingInAnUnoccupiedTimeframeAndHaveBookingBeActive()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating a booking in an unoccupied timeframe and have booking be active", null, ((string[])(null)));
-#line 42
+#line 48
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 43
+#line 49
  testRunner.Given("Startdate for the booking is in 1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 44
+#line 50
  testRunner.And("Enddate for the booking is in 3 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 51
  testRunner.When("I book a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 46
+#line 52
  testRunner.Then("The booking should be active", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -213,16 +234,16 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ReturningFullyOccupiedRoomsWithinASetOf2Dates()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Returning fully occupied rooms within a set of 2 dates", null, ((string[])(null)));
-#line 49
+#line 55
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 50
+#line 56
  testRunner.Given("Startdate for the booking is in 1 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 51
+#line 57
  testRunner.And("Enddate for the booking is in 30 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
+#line 58
  testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
+#line 59
  testRunner.Then("a list of fully occupied dates should be given", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -234,16 +255,16 @@ this.ScenarioInitialize(scenarioInfo);
         public virtual void ReturnEmptyListIfNoFullyOccupiedDatesWithinASetOf2Dates()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return empty list if no fully occupied dates within a set of 2 dates", null, ((string[])(null)));
-#line 55
+#line 61
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 56
+#line 62
  testRunner.Given("Startdate for the booking is in 45 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 57
+#line 63
  testRunner.And("Enddate for the booking is in 60 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 58
+#line 64
  testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 59
+#line 65
  testRunner.Then("an empty list of dates should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
