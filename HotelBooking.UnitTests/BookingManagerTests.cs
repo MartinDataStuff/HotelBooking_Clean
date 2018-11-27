@@ -22,10 +22,8 @@ namespace HotelBooking.UnitTests
             FakeRoomRepo = new Mock<IRepository<Room>>();
             FakeBookingRepo = new Mock<IRepository<Booking>>();
 
-
             //Booking Manager instance
             bm = new BookingManager(FakeBookingRepo.Object, FakeRoomRepo.Object, new DateChecker());
-
 
             //Setup of Mock Rooms
             var rooms = new List<Room>
@@ -35,7 +33,6 @@ namespace HotelBooking.UnitTests
                 new Room { Id = 3, Description = "C"}
             };
 
-
             //Setup of Mock booking
             DateTime date = DateTime.Today.AddDays(4);
             List<Booking> bookings = new List<Booking>
@@ -44,7 +41,6 @@ namespace HotelBooking.UnitTests
                 new Booking { Id = 2, StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=2, RoomId=2 },
                 new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(14), IsActive=true, CustomerId=1, RoomId=3 }
             };
-
 
             //Unit test setup for mock data, with getall rooms
             FakeRoomRepo.Setup(x => x.GetAll()).Returns(rooms);
@@ -57,7 +53,6 @@ namespace HotelBooking.UnitTests
 
             //Unit test setup for mock data with specific booking
             FakeBookingRepo.Setup(y => y.Get(2)).Returns(bookings[1]);
-
         }
 
 
@@ -77,7 +72,6 @@ namespace HotelBooking.UnitTests
             int Roomid = bm.FindAvailableRoom(date, date.AddDays(1));
 
             Assert.NotEqual(-1, Roomid);
-
         }
 
 
@@ -93,7 +87,6 @@ namespace HotelBooking.UnitTests
                 CustomerId = 1,
                 IsActive = false
             };
-
             Assert.Throws<ArgumentException>(() => bm.CreateBooking(booking));
         }
 
@@ -101,7 +94,6 @@ namespace HotelBooking.UnitTests
         [Fact]
         public void CreateBooking_Booking_IsTrue()
         {
-
             var booking = new Booking
             {
                 Id = 1,
@@ -112,8 +104,6 @@ namespace HotelBooking.UnitTests
             };
 
             Assert.True(bm.CreateBooking(booking));
-
-
         }
 
 
@@ -128,10 +118,7 @@ namespace HotelBooking.UnitTests
                 CustomerId = 1,
                 IsActive = false
             };
-
             Assert.False(bm.CreateBooking(booking));
-
-
         }
 
 
