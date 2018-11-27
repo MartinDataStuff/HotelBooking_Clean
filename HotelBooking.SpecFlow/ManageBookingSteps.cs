@@ -174,7 +174,8 @@ namespace HotelBooking.SpecFlow
         [Then(@"an empty list of dates should be returned")]
         public void ThenAnEmptyListOfDatesShouldBeReturned()
         {
-            ScenarioContext.Current.Pending();
+            //Assert.Equal(0, _dates.Count);
+            Assert.Empty(_dates);
         }
 
     }
