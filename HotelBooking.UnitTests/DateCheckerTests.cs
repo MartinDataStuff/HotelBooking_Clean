@@ -1,7 +1,6 @@
 ﻿using System;
 using HotelBooking.BusinessLogic;
 using HotelBooking.Models;
-using HotelBooking.UnitTests.Fakes;
 using HotelBooking.UnitTests.TestDataGenerators.DateChecker;
 using Xunit;
 

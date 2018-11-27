@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using HotelBooking.Controllers;
 using HotelBooking.Models;
-using HotelBooking.UnitTests.Fakes;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
