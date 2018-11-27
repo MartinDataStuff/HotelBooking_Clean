@@ -49,11 +49,10 @@ namespace HotelBooking.SpecFlow
             DateTime date = DateTime.Today.AddDays(4);
             List<Booking> bookings = new List<Booking>
             {
-                new Booking { Id = 1, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=1 },
+                new Booking { Id = 1, StartDate=DateTime.Today.AddDays(-1), EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=1 },
                 new Booking { Id = 2, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=2, RoomId=2 },
                 new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=3 }
             };
-
 
             //Unit test setup for mock data, with getall rooms
             fakeRoomRepo.Setup(x => x.GetAll()).Returns(rooms);
@@ -171,5 +170,12 @@ namespace HotelBooking.SpecFlow
         {
             Assert.Equal(16,_dates.Count);
         }
+
+        [Then(@"an empty list of dates should be returned")]
+        public void ThenAnEmptyListOfDatesShouldBeReturned()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
     }
 }

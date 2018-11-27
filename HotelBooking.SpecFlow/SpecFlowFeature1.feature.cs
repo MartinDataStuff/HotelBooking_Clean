@@ -207,6 +207,27 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.FactAttribute(DisplayName="Return empty list if no fully occupied dates within a set of 2 dates")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Return empty list if no fully occupied dates within a set of 2 dates")]
+        public virtual void ReturnEmptyListIfNoFullyOccupiedDatesWithinASetOf2Dates()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return empty list if no fully occupied dates within a set of 2 dates", null, ((string[])(null)));
+#line 49
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 50
+ testRunner.Given("Startdate for the booking is in 45 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 51
+ testRunner.And("Enddate for the booking is in 60 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 52
+ testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
+ testRunner.Then("an empty list of dates should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

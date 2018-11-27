@@ -45,3 +45,9 @@ Scenario: Returning fully occupied rooms within a set of 2 dates
 	And Enddate for the booking is in 30 days
 	When I look for fully booked dates
 	Then a list of fully occupied dates should be given
+
+Scenario: Return empty list if no fully occupied dates within a set of 2 dates
+	Given Startdate for the booking is in 45 day
+	And Enddate for the booking is in 60 days
+	When I look for fully booked dates
+	Then an empty list of dates should be returned
