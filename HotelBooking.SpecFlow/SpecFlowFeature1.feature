@@ -16,6 +16,12 @@ Scenario: Find an available room with valid date
 	When I look for a room
 	Then I should get a room ID
 
+Scenario: Try to find an available room but get -1 as room id as no rooms available
+	Given Startdate for the booking is in 5 day
+	And Enddate for the booking is in 7 days
+	When I look for a room
+	Then I should get -1 as a room ID
+
 Scenario: Creating a booking with invalid dates
 	Given Startdate for the booking is in 2 days
 	And Enddate for the booking is in 5 days

@@ -152,7 +152,14 @@ namespace HotelBooking.SpecFlow
         {
             Assert.NotEqual(badNumber, _roomID);
         }
-        
+
+        [Then(@"I should get (.*) as a room ID")]
+        public void ThenIShouldGetAsARoomID(int badNumber)
+        {
+            Assert.Equal(badNumber, _roomID); ;
+        }
+
+
         [Then(@"return whether the booking is (.*)")]
         public void ThenReturnWhetherTheBookingIsTrue(bool isValid)
         {
