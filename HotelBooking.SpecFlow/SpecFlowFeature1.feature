@@ -70,7 +70,7 @@ Scenario: Return empty list if no fully occupied dates within a set of 2 dates
 	When I look for fully booked dates
 	Then an empty list of dates should be returned
 
-Scenario: Return empty list if no fully occupied dates within a set of 6 dates
+Scenario: Return not empty list if a mix of occupied and non-occupied dates within a set of 2 dates
 	Given Startdate for the booking is in 2 day
 	And Enddate for the booking is in 7 days
 	When I look for fully booked dates
