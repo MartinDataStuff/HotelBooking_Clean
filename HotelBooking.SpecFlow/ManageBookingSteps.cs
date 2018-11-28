@@ -191,11 +191,12 @@ namespace HotelBooking.SpecFlow
             //Assert.Equal(0, _dates.Count);
             Assert.Empty(_dates);
         }
+
         [Then(@"an empty list of dates shouldnt be returned")]
         public void ThenAnEmptyListOfDatesShouldntBeReturned()
         {
-            //Assert.Equal(0, _dates.Count);
             Assert.NotEmpty(_dates);
         }
+
     }
 }
