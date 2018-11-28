@@ -249,12 +249,12 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Return empty list if no fully occupied dates within a set of 2 dates")]
+        [Xunit.FactAttribute(DisplayName="Return empty list if no bookings within a set of 2 dates")]
         [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
-        [Xunit.TraitAttribute("Description", "Return empty list if no fully occupied dates within a set of 2 dates")]
-        public virtual void ReturnEmptyListIfNoFullyOccupiedDatesWithinASetOf2Dates()
+        [Xunit.TraitAttribute("Description", "Return empty list if no bookings within a set of 2 dates")]
+        public virtual void ReturnEmptyListIfNoBookingsWithinASetOf2Dates()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return empty list if no fully occupied dates within a set of 2 dates", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return empty list if no bookings within a set of 2 dates", null, ((string[])(null)));
 #line 61
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -266,6 +266,48 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 65
  testRunner.Then("an empty list of dates should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Return empty list if no fully occupied dates within a set of 2 dates")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Return empty list if no fully occupied dates within a set of 2 dates")]
+        public virtual void ReturnEmptyListIfNoFullyOccupiedDatesWithinASetOf2Dates()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return empty list if no fully occupied dates within a set of 2 dates", null, ((string[])(null)));
+#line 67
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 68
+ testRunner.Given("Startdate for the booking is in 2 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 69
+ testRunner.And("Enddate for the booking is in 3 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 71
+ testRunner.Then("an empty list of dates should be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Return empty list if no fully occupied dates within a set of 6 dates")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Return empty list if no fully occupied dates within a set of 6 dates")]
+        public virtual void ReturnEmptyListIfNoFullyOccupiedDatesWithinASetOf6Dates()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return empty list if no fully occupied dates within a set of 6 dates", null, ((string[])(null)));
+#line 73
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 74
+ testRunner.Given("Startdate for the booking is in 2 day", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 75
+ testRunner.And("Enddate for the booking is in 7 days", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 76
+ testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 77
+ testRunner.Then("an empty list of dates shouldnt be returned", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
