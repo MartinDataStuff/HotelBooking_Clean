@@ -115,11 +115,11 @@ namespace HotelBooking.SpecFlow
             }
         }
 
-        [Then(@"I should a room ID that is not (.*)")]
-        public void ThenIShouldARoomIDThatIsNot(int p0)
-        {
-            ScenarioContext.Current.Pending();
-        }
+        //[Then(@"I should a room ID that is not (.*)")]
+        //public void ThenIShouldARoomIDThatIsNot(int p0)
+        //{
+        //    ScenarioContext.Current.Pending();
+        //}
 
 
         [When(@"I book a room")]
@@ -199,6 +199,13 @@ namespace HotelBooking.SpecFlow
         {
             Assert.NotEmpty(_dates);
         }
+
+        [Then(@"I should get a room ID that is not (.*)")]
+        public void ThenIShouldGetARoomIDThatIsNot(int wrongRoomID)
+        {
+            Assert.NotEqual(_roomID, wrongRoomID);
+        }
+
 
     }
 }

@@ -315,6 +315,29 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.TheoryAttribute(DisplayName="Find an available room with valid date using example table")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Find an available room with valid date using example table")]
+        [Xunit.InlineDataAttribute("120", "123", "-1", new string[0])]
+        [Xunit.InlineDataAttribute("1125", "127", "-1", new string[0])]
+        public virtual void FindAnAvailableRoomWithValidDateUsingExampleTable(string startdat2, string endedat2, string wrongResult, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Find an available room with valid date using example table", null, exampleTags);
+#line 79
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 80
+ testRunner.Given(string.Format("Startdate for the booking is in {0} day", startdat2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 81
+ testRunner.And(string.Format("Enddate for the booking is in {0} days", endedat2), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 82
+ testRunner.When("I look for a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 83
+ testRunner.Then(string.Format("I should get a room ID that is not {0}", wrongResult), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

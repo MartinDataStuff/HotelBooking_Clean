@@ -75,3 +75,18 @@ Scenario: Return not empty list if a mix of occupied and non-occupied rooms with
 	And Enddate for the booking is in 7 days
 	When I look for fully booked dates
 	Then an empty list of dates shouldnt be returned
+
+Scenario Outline: Find an available room with valid date using example table
+	Given Startdate for the booking is in <Startdat2> day
+	And Enddate for the booking is in <Endedat2> days
+	When I look for a room
+	Then I should get a room ID that is not <WrongResult>
+
+Examples:
+	| Startdat2	| Endedat2	| WrongResult	|
+	| 120			| 123			| -1	|
+	| 1125			| 127			| -1	|
+	#|Startdate2|Endedate2|Valid2|
+	#|1|3|true|
+	#|1|6|true|
+	#|33|55|true|
