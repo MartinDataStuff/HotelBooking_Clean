@@ -51,7 +51,9 @@ namespace HotelBooking.SpecFlow
             {
                 new Booking { Id = 1, StartDate=DateTime.Today.AddDays(-1), EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=1 },
                 new Booking { Id = 2, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=2, RoomId=2 },
-                new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=3 }
+                new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=3 },
+                new Booking { Id = 3, StartDate=date.AddDays(38), EndDate=date.AddDays(62), IsActive=true, CustomerId=1, RoomId=2 },
+                new Booking { Id = 3, StartDate=date.AddDays(47), EndDate=date.AddDays(58), IsActive=true, CustomerId=2, RoomId=3 }
             };
 
             //Unit test setup for mock data, with getall rooms
