@@ -52,8 +52,12 @@ namespace HotelBooking.SpecFlow
                 new Booking { Id = 1, StartDate=DateTime.Today.AddDays(-1), EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=1 },
                 new Booking { Id = 2, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=2, RoomId=2 },
                 new Booking { Id = 3, StartDate=date, EndDate=date.AddDays(15), IsActive=true, CustomerId=1, RoomId=3 },
-                new Booking { Id = 3, StartDate=date.AddDays(38), EndDate=date.AddDays(62), IsActive=true, CustomerId=1, RoomId=2 },
-                new Booking { Id = 3, StartDate=date.AddDays(47), EndDate=date.AddDays(58), IsActive=true, CustomerId=2, RoomId=3 }
+                new Booking { Id = 4, StartDate=date.AddDays(38), EndDate=date.AddDays(62), IsActive=true, CustomerId=1, RoomId=2 },
+                new Booking { Id = 5, StartDate=date.AddDays(47), EndDate=date.AddDays(58), IsActive=true, CustomerId=2, RoomId=3 },
+                new Booking { Id = 6, StartDate=date.AddDays(122), EndDate=date.AddDays(129), IsActive=true, CustomerId=2, RoomId=1 },
+                new Booking { Id = 7, StartDate=date.AddDays(222), EndDate=date.AddDays(229), IsActive=true, CustomerId=1, RoomId=1 },
+                new Booking { Id = 8, StartDate=date.AddDays(222), EndDate=date.AddDays(229), IsActive=true, CustomerId=2, RoomId=2 },
+                new Booking { Id = 9, StartDate=date.AddDays(222), EndDate=date.AddDays(229), IsActive=true, CustomerId=1, RoomId=3 }
             };
 
             //Unit test setup for mock data, with getall rooms
@@ -186,6 +190,19 @@ namespace HotelBooking.SpecFlow
         {
             Assert.Equal(16,_dates.Count);
         }
+
+        [Then(@"a list of (.*) dates should be given")]
+        public void ThenAListOfTrueDatesShouldBeGiven(bool FoundAnyFullyOccupiedDates)
+        {
+            if (FoundAnyFullyOccupiedDates)
+            {
+                Assert.NotEmpty(_dates);
+            }
+            else if (!FoundAnyFullyOccupiedDates) {
+                Assert.Empty(_dates);
+            }
+        }
+
 
         [Then(@"an empty list of dates should be returned")]
         public void ThenAnEmptyListOfDatesShouldBeReturned()

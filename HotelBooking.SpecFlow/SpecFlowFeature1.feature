@@ -84,8 +84,22 @@ Scenario Outline: Find an available room with valid date using example table
 
 Examples:
 	| Startdat2	| Endedat2	| WrongResult	|
-	| 120			| 123			| -1	|
-	| 1125			| 127			| -1	|
+	| 120			| 125			| -1	|
+	| 115			| 120			| -1	|
+	| 125			| 127			| -1	|
+
+Scenario Outline: Returning fully occupied rooms within a set of 2 dates using example table
+	Given Startdate for the booking is in <Startdat3> day
+	And Enddate for the booking is in <Endedat3> days
+	When I look for fully booked dates
+	Then a list of <FoundAnyFullyOccupiedDates> dates should be given
+
+Examples:
+	| Startdat3	| Endedat3	| FoundAnyFullyOccupiedDates	|
+	| 235			| 245			| false	|
+	| 215			| 230			| true	|
+	| 220			| 228			| true	|
+	| 220			| 230			| true	|
 	#|Startdate2|Endedate2|Valid2|
 	#|1|3|true|
 	#|1|6|true|

@@ -318,8 +318,9 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TheoryAttribute(DisplayName="Find an available room with valid date using example table")]
         [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
         [Xunit.TraitAttribute("Description", "Find an available room with valid date using example table")]
-        [Xunit.InlineDataAttribute("120", "123", "-1", new string[0])]
-        [Xunit.InlineDataAttribute("1125", "127", "-1", new string[0])]
+        [Xunit.InlineDataAttribute("120", "125", "-1", new string[0])]
+        [Xunit.InlineDataAttribute("115", "120", "-1", new string[0])]
+        [Xunit.InlineDataAttribute("125", "127", "-1", new string[0])]
         public virtual void FindAnAvailableRoomWithValidDateUsingExampleTable(string startdat2, string endedat2, string wrongResult, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Find an available room with valid date using example table", null, exampleTags);
@@ -334,6 +335,31 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I look for a room", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 83
  testRunner.Then(string.Format("I should get a room ID that is not {0}", wrongResult), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.TheoryAttribute(DisplayName="Returning fully occupied rooms within a set of 2 dates using example table")]
+        [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
+        [Xunit.TraitAttribute("Description", "Returning fully occupied rooms within a set of 2 dates using example table")]
+        [Xunit.InlineDataAttribute("235", "245", "false", new string[0])]
+        [Xunit.InlineDataAttribute("215", "230", "true", new string[0])]
+        [Xunit.InlineDataAttribute("220", "228", "true", new string[0])]
+        [Xunit.InlineDataAttribute("220", "230", "true", new string[0])]
+        public virtual void ReturningFullyOccupiedRoomsWithinASetOf2DatesUsingExampleTable(string startdat3, string endedat3, string foundAnyFullyOccupiedDates, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Returning fully occupied rooms within a set of 2 dates using example table", null, exampleTags);
+#line 91
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 92
+ testRunner.Given(string.Format("Startdate for the booking is in {0} day", startdat3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 93
+ testRunner.And(string.Format("Enddate for the booking is in {0} days", endedat3), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.When("I look for fully booked dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 95
+ testRunner.Then(string.Format("a list of {0} dates should be given", foundAnyFullyOccupiedDates), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
