@@ -291,14 +291,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Return not empty list if a mix of occupied and non-occupied dates within a set of" +
+        [Xunit.FactAttribute(DisplayName="Return not empty list if a mix of occupied and non-occupied rooms within a set of" +
             " 2 dates")]
         [Xunit.TraitAttribute("FeatureTitle", "Manage Booking")]
-        [Xunit.TraitAttribute("Description", "Return not empty list if a mix of occupied and non-occupied dates within a set of" +
+        [Xunit.TraitAttribute("Description", "Return not empty list if a mix of occupied and non-occupied rooms within a set of" +
             " 2 dates")]
-        public virtual void ReturnNotEmptyListIfAMixOfOccupiedAndNon_OccupiedDatesWithinASetOf2Dates()
+        public virtual void ReturnNotEmptyListIfAMixOfOccupiedAndNon_OccupiedRoomsWithinASetOf2Dates()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return not empty list if a mix of occupied and non-occupied dates within a set of" +
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Return not empty list if a mix of occupied and non-occupied rooms within a set of" +
                     " 2 dates", null, ((string[])(null)));
 #line 73
 this.ScenarioInitialize(scenarioInfo);
